@@ -1,0 +1,61 @@
+
+Softing OPC Toolbox V4.31 documentation is presented via chm files.
+There are several chm-readers for the linux distributions.
+One of readers is xCHM.
+
+xCHM – CHM viewer for Linux
+Dependencies:
+
+1.	wxWidgets 
+2.	CHMLIB
+
+
+WxWidgets:
+	
+-	Download source http://wxwidgets.org
+-	Download wxGTK
+-	Downloaded file wxGTK-2.8.8.tar.gz (for example)
+-	tar xzf wxGTK-2.8.8.tar.gz
+-	step into folder wxGTK-2.8.8
+-	mkdir build_gtk
+-	cd build_gtk
+-	../configure
+-	make
+-	su (type your root password)
+-	make install
+-	ldconfig
+
+CHMLIB:
+
+-	Download source http://www.jedrea.com/chmlib
+-	Download chmlib
+-	Downloaded file chmlib-0.39.tar.gz(for example)
+-	tar xzf chmlib-0.39.tar.gz
+-	step into folder chmlib-0.39
+-	./configure
+-	make
+-	su (type your root password)
+-	make install
+
+xCHM – CHM viewer for Linux
+
+-	Download source http://linux.softpedia.com/get/Desktop-Environment/Tools/xCHM-4348.shtml
+-	Download xchm-1.14
+-	Downloaded file xchm-1.14.tar.gz(for example)
+-	tar xzf xchm-1.14.tar.gz
+-	step into folder xchm-1.14
+-	./configure
+-	make
+-	su (type your root password)
+-	make install
+
+
+Run xchm
+
+-	xchm file_name.chm(from a console for example)
+-	if error message in the console that libchm.so is missing when running xchm file_name.chm that can because the libchm.so.0 is in /usr/local/lib and that path is not visible. The solution is link to a visible path:
+ln –s /usr/local/lib/libchm.so.0 /usr/lib/libchm.so.0   (/usr/lib is visible)
+
+
+Observations
+	WxWidgets, CHMLIB and xCHM are free downloadable and there are no problems regarding licenses for internal scope.

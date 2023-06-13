@@ -1,0 +1,18 @@
+// GraySimulator.idl : IDL source for Gray Simulator
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (GraySimulator.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(604007ec-f37a-474a-bdcd-e20b84fde6ac),
+	version(1.0),
+	helpstring("GraySimulator Sample Type Library")
+]
+library GRAYSIMLIB
+{
+	importlib("stdole2.tlb");
+};

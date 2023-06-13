@@ -1,0 +1,20 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Softing OPC Toolbox V4.3x</title>
+</head>
+<body class="vendor-book">
+    <div class="details">
+        <span class="vendor">Softing Industrial Automation Gmbh</span>
+        <span class="locale">en-us</span>
+        <span class="product">Softing OPC Toolbox V4.3x</span>
+        <span class="name">Softing OPC Toolbox V4.3x</span>
+    </div>
+    <div class="package-list">
+        <div class="package">
+            <!-- NOTE: The "name" span value cannot contain any periods! -->
+            <span class="name">SoftingOPCToolboxV43x</span>
+            <a class="current-link" href="SoftingOPCToolboxV43x.cab">SoftingOPCToolboxV43x.cab</a>
+        </div>
+    </div>
+</body>
+</html>

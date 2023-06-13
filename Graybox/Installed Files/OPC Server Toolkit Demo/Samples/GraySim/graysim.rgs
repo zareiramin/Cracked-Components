@@ -1,0 +1,59 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'Graybox OPC Server Toolkit Sample'
+		'graysim.exe'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+	NoRemove 'Component Categories'
+	{
+		NoRemove '{63D5F430-CFE4-11d1-B2C8-0060083BA1FB}'
+		{
+			NoRemove val '409' = s 'OPC Data Access Servers Version 1.0'
+		}
+		NoRemove '{63D5F432-CFE4-11d1-B2C8-0060083BA1FB}'
+		{
+			NoRemove val '409' = s 'OPC Data Access Servers Version 2.0'
+		}
+		NoRemove '{CC603642-66D7-48f1-B69A-B625E73652D7}'
+		{
+			NoRemove val '409' = s 'OPC Data Access Servers Version 3.0'
+		}
+	}
+	Graybox.Sample.GraySim.1 = s 'Graybox OPC Server Toolkit Sample'
+	{
+		CLSID = s '%APPID%'
+	}
+	Graybox.Sample.GraySim = s 'Graybox OPC Server Toolkit Sample'
+	{
+		CLSID = s '%APPID%'
+		CurVer = s 'Graybox.Sample.GraySim.1'
+		OPC
+		{
+			Vendor = s 'GRAYBOX'
+		}
+	}
+	NoRemove CLSID
+	{
+		ForceRemove '%APPID%' = s 'Graybox OPC Server Toolkit Sample'
+		{
+			val AppID = s '%APPID%'
+			ProgID = s 'Graybox.Sample.GraySim.1'
+			VersionIndependentProgID = s 'Graybox.Sample.GraySim'
+			LocalServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Free'
+			}
+			'Implemented Categories'
+			{
+				{63D5F430-CFE4-11d1-B2C8-0060083BA1FB}
+				{63D5F432-CFE4-11d1-B2C8-0060083BA1FB}
+				{CC603642-66D7-48f1-B69A-B625E73652D7}
+			}
+			Version = s '1.0'
+		}
+	}
+}

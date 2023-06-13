@@ -1,0 +1,36 @@
+LIBRARY	"gbdaflat"
+EXPORTS
+	GBDataAccess_Constructor
+	GBDataAccess_Destructor
+	GBDataAccess_Advise
+	GBDataAccess_Unadvise
+	GBDataAccess_GBInitialize
+	GBDataAccess_GBRegisterClassObject
+	GBDataAccess_GBRevokeClassObject
+	GBDataAccess_GBRegisterServer
+	GBDataAccess_GBUnregisterServer
+	GBDataAccess_GBGetItems
+	GBDataAccess_GBGetItems_Cleanup
+	GBDataAccess_GBUpdateItems
+	GBDataAccess_GBBeginUpdate
+	GBDataAccess_GBSetItem
+	GBDataAccess_GBEndUpdate
+	GBDataAccess_GBCreateItem
+	GBDataAccess_GBCreateItemAnalog
+	GBDataAccess_GBCreateItemEnum
+	GBDataAccess_GBAddProperty
+	GBDataAccess_GBSetProperty
+	GBDataAccess_GBGetProperty
+	GBDataAccess_GBRemoveProperty
+	GBDataAccess_GBGetBandwidth
+	GBDataAccess_GBSetState
+	GBDataAccess_GBSuspend
+	GBDataAccess_GBResume
+	GBDataAccess_GBShutdown
+	GBDataAccess_GBDisconnectClients
+	
+	GBDataAccess_GBGetItemCanonicalType
+	GBDataAccess_GBGetItemDefaultValue
+	GBDataAccess_GBGetItemEUType
+	GBDataAccess_GBGetItemEUInfo
+	

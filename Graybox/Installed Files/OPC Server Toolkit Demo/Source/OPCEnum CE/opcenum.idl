@@ -1,0 +1,136 @@
+// opcenum.idl : IDL source for opcenum.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (opcenum.tlb) and marshalling code.
+
+import "comcat.idl";
+import "oaidl.idl";
+import "ocidl.idl";
+import "objidl.idl";
+
+//==============================================================================
+// IOPCServerList
+//
+// The OPCEnum.EXE object provided by the OPC Foundation supports the 
+// IOPCServerList interface via DCOM to allow clients to determine available 
+// OPC servers on remote machines
+
+[
+	object,
+	uuid(13486D50-4821-11D2-A494-3CB306C10000),
+    // async_uuid(32E8D703-A335-4fc1-8F4B-663F505C7D62),
+	pointer_default(unique)
+]
+interface IOPCServerList : IUnknown
+{
+    HRESULT EnumClassesOfCategories(
+        [in]                       ULONG        cImplemented,
+        [in,size_is(cImplemented)] CATID        rgcatidImpl[],
+        [in]                       ULONG        cRequired,
+        [in,size_is(cRequired)]    CATID        rgcatidReq[],
+        [out]                      IEnumGUID ** ppenumClsid
+    );
+
+    HRESULT GetClassDetails(
+        [in]  REFCLSID  clsid, 
+        [out] LPOLESTR* ppszProgID, 
+        [out] LPOLESTR* ppszUserType
+    );
+
+    HRESULT CLSIDFromProgID(
+        [in]  LPCOLESTR szProgId, 
+        [out] LPCLSID   clsid
+    );
+};
+//==============================================================================
+// IOPCEnumGUID
+//
+// The OPCEnum.EXE object now has an interface
+// IOPCServerList2 which uses IOPCEnumGUID rather than
+// the standard MS IEnumGUID. This was done to work
+// around problems with the MS version on certain
+// system configurations. IOPCEnumGUID is impelmented
+// in OPCEnum.EXE.
+
+[
+    object,
+	uuid(55C382C8-21C7-4e88-96C1-BECFB1E3F483),
+    // async_uuid(32E8D704-A335-4fc1-8F4B-663F505C7D62),
+    pointer_default(unique)
+]
+interface IOPCEnumGUID : IUnknown
+{
+    typedef [unique] IOPCEnumGUID * LPOPCENUMGUID;
+
+    HRESULT Next(
+        [in]                                           ULONG   celt,
+        [out, size_is(celt), length_is(*pceltFetched)] GUID  * rgelt,
+        [out]                                          ULONG * pceltFetched
+    );
+
+    HRESULT Skip(
+        [in] ULONG celt
+    );
+
+    HRESULT Reset();
+
+    HRESULT Clone(
+        [out] IOPCEnumGUID **ppenum
+    );
+}
+//==============================================================================
+// IOPCServerList2
+
+[
+	object,
+	uuid(9DD0B56C-AD9E-43ee-8305-487F3188BF7A),
+    // async_uuid(32E8D705-A335-4fc1-8F4B-663F505C7D62),
+	pointer_default(unique)
+]
+interface IOPCServerList2 : IUnknown
+{
+    HRESULT EnumClassesOfCategories(
+        [in]                       ULONG           cImplemented,
+        [in,size_is(cImplemented)] CATID           rgcatidImpl[],
+        [in]                       ULONG           cRequired,
+        [in,size_is(cRequired)]    CATID           rgcatidReq[],
+        [out]                      IOPCEnumGUID ** ppenumClsid
+    );
+
+    HRESULT GetClassDetails(
+        [in]  REFCLSID  clsid, 
+        [out] LPOLESTR* ppszProgID, 
+        [out] LPOLESTR* ppszUserType,
+        [out] LPOLESTR* ppszVerIndProgID
+    );
+
+    HRESULT CLSIDFromProgID(
+        [in]  LPCOLESTR szProgId, 
+        [out] LPCLSID   clsid
+    );
+};
+
+
+
+
+[
+	uuid(13486D43-4821-11D2-A494-3CB306C10000),
+	version(1.0),
+	helpstring("Graybox OPCEnum 1.0 for WindowsCE Type Library")
+]
+library OPCENUMLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(13486D51-4821-11D2-A494-3CB306C10000),
+		helpstring("OPCServerList Class")
+	]
+	coclass OPCServerList
+	{
+		[default] interface IOPCServerList;
+		interface IOPCServerList2;
+	};
+};

@@ -1,0 +1,2193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "gbda_clr"
+    </assembly>
+    <members>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.UnregisterServer(System.Guid)">
+            <summary>
+                <para>Removes the previous OPC Server registration from the system registry. 
+A wrapper for GBDataAccess::GBUnregisterServer method.</para>
+                <para>You can register your OPC server as a regular COM Server or as an Windows NT service.
+Note that registering as a service means only the additional LocalService value under the
+AppID key. You have to create and register a service with the Service Control Manager by yourself.</para>
+                <para>UnregisterServer calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccess::GBUnregisterServer to throw an exception if this method fails.</para>
+            </summary>
+            <param name="classId">A CLSID of the OPC server calss object.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.RegisterServer(System.Guid,System.String,System.String,System.String,System.String)">
+            <param name="classId">A CLSID of the OPC server calss object.</param>
+            <param name="vendorName">A vendor specific string providing additional information about the server.</param>
+            <param name="description">A description of the server class object.</param>
+            <param name="versionIndipProgId">A version independent ProgID of the server. For example, 'SomeOrganization.OPCServer'.</param>
+            <param name="versionCurrent">A current version of the server class object. For example, '1.2'. Version dependent ProgID will represent
+the concatination of versionIndipProgId, point and versionCurrent.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.RegisterServer(System.Guid,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+                <para>Registers the OPC server in the system registry. A wrapper for GBDataAccess::GBRegisterServer method.</para>
+                <para>You can register your OPC server as a regular COM Server or as an Windows NT service.
+Note that registering as a service means only the additional LocalService value under the
+AppID key. You have to create and register a service with the Service Control Manager by yourself.</para>
+            </summary>
+            <para>RegisterServer calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccess::GBRegisterServer to throw an exception if this method fails.</para>
+            <param name="classId">A CLSID of the OPC server calss object.</param>
+            <param name="vendorName">A vendor specific string providing additional information about the server.</param>
+            <param name="description">A description of the server class object.</param>
+            <param name="versionIndipProgId">A version independent ProgID of the server. For example, 'SomeOrganization.OPCServer'.</param>
+            <param name="versionCurrent">A current version of the server class object. For example, '1.2'. Version dependent ProgID will represent
+the concatination of versionIndipProgId, point and versionCurrent.</param>
+            <param name="serviceName">Windows NT service name. If null, then the OPC server will be registered as a regular COM server. Otherwise,
+the OPC server will be registered as a service.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.RevokeClassObject">
+            <summary>
+                <para>A wrapper for GBDataAccess::GBRevokeClassObject method.</para>
+                <para>Informs OLE that a class object, previously registered with the RegisterClassObject function, is no longer available for use.</para>
+                <para>RevokeClassObject calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccess::GBRevokeClassObject to throw an exception if this method fails.</para>
+            </summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.RegisterClassObject">
+            <summary>
+                <para>A wrapper for GBDataAccess::GBRegisterClassObject method.</para>
+                <para>Registers an OPC server class object with OLE so client applications can connect to it.
+Should be called once per OPC server class on the startup.</para>
+                <para>RegisterClassObject calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccess::GBRegisterClassObject to throw an exception if this method fails.</para>
+            </summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.Initialize(System.Guid,System.Int32,System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions,System.Char,System.Int32)">
+            <param name="classId">The CLSID of the COM object representing the OPC server.</param>
+            <param name="timeBase">The period with which the OPC server cache is scanned for the changes.
+Any OPC group updaterate will be revised to be a multiple of timeBase.</param>
+            <param name="minUpdateRate">The minimal update rate, in milliseconds, allowed for OPC groups.
+The revised updaterate of any OPC group will be the minimal timeBase multiple which is less than minUpdateRate.</param>
+            <param name="flags">Flags affecting the OPC server functionality.</param>
+            <param name="branchSeparator">Branch separator for tag names in OPC Server address space hierarchy. 
+It must be an ANSI symbol.</param>
+            <param name="maxTags">The maximal tags count which can be created in the OPC server address space.
+Attempt to specify a number greater than the supported tags maximum of your Toolkit version will
+result in the exception.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.Initialize(System.Guid,System.Int32,System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions,System.Char,System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+                <para>Initializes the OPC Server and the Toolkit library. A wrapper for GBDataAccess::GBInitialize method.</para>
+                <para>Initialize must be called prior to any other OPCDAServer member functions.</para>
+                <para>Initialize calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccess::GBInitialize to throw an exception if Initialize method fails.</para>
+            </summary>
+            <param name="classId">The CLSID of the COM object representing the OPC server.</param>
+            <param name="timeBase">The period with which the OPC server cache is scanned for the changes.
+Any OPC group updaterate will be revised to be a multiple of timeBase.</param>
+            <param name="minUpdateRate">The minimal update rate, in milliseconds, allowed for OPC groups.
+The revised updaterate of any OPC group will be the minimal timeBase multiple which is less than minUpdateRate.</param>
+            <param name="flags">Flags affecting the OPC server functionality.</param>
+            <param name="branchSeparator">Branch separator for tag names in OPC Server address space hierarchy. 
+It must be an ANSI symbol.</param>
+            <param name="maxTags">The maximal tags count which can be created in the OPC server address space.
+Attempt to specify a number greater than the supported tags maximum of your Toolkit version will
+result in the exception.</param>
+            <param name="versionMajor">The major version of the OPC server, which is reported to the OPC clients.</param>
+            <param name="versionMinor">The minor version of the OPC server, which is reported to the OPC clients.</param>
+            <param name="versionBuild">The build number of the OPC server, which is reported to the OPC clients.</param>
+            <param name="vendorName">A vendor specific string providing additional information about the OPC server.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.Shutdown(System.String)">
+            <summary>
+                <para>Shuts down this OPC server. A wrapper for GBDataAccessBase::GBShutdown method.</para>
+                <para>This method will send IOPCShutdown::ShutdownRequest callback to all client advised IOPCShutdown connection point.
+Server functioning will stop and it can't be resumed later.</para>
+            </summary>
+            <returns>false if error has occurred, otherwise true.</returns>
+            <param name="reason">An optional text string indicating the reason for the shutdown. Pass null if you don't wish to specify the reason.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.Resume">
+            <summary>
+                <para>Resumes this OPC server. A wrapper for GBDataAccessBase::GBResume method.</para>
+                <para>Resumes OPC server, which was previously suspended with Suspend method, and sets it status to OPC_STATUS_RUNNING.</para>
+            </summary>
+            <returns>false if error has occurred, otherwise true.</returns>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.Suspend">
+            <summary>
+                <para>Suspends this OPC server. A wrapper for GBDataAccessBase::GBSuspend method.</para>
+                <para>Sets the server status to OPC_STATUS_SUSPENDED and suspends its functioning.
+While in this state, OPC server ignores most of the client calls, doesn't process
+data and doesn't send updates (OnDataChange callbacks).</para>
+                <para>Call Resume to resume the OPC server functions.</para>
+            </summary>
+            <returns>false if error has occurred, otherwise true.</returns>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetState(Graybox.OPC.ServerToolkit.CLRWrapper.ServerState)">
+            <summary>
+                <para>Sets the server state. A wrapper for GBDataAccessBase::GBSetState method.</para>
+                <para>This method doesn't affect the OPC server behavior. It only affects the status which OPC clients will recieve via IOPCServer::GetStatus.</para>
+            </summary>
+            <returns>false if error has occurred, otherwise true.</returns>
+            <param name="state">A new OPC server state.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.GetBandwidth">
+            <summary>
+                <para>Used to determine the bandwidth of the OPC server. A wrapper for GBDataAccessBase::GBGetBandwidth method.</para>
+                <para>This method returns the worst bandwidth among all of the OPC server instances.</para>
+                <para>GetBandwidth returns zero is bandwidth is undefiened</para>
+            </summary>
+            <returns>The bandwidth of this OPC server.</returns>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.RemoveProperty(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties)">
+            <param name="tagId">A TagId identifier of a tag whose property is to be removed. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a standard property to remove.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.RemoveProperty(System.Int32,System.Int32)">
+            <summary>
+                <para>Removes the specified property of the specified tag.
+A wrapper for GBDataAccessBase::GBRemoveProperty method.</para>
+                <para>RemoveProperty calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBRemoveProperty to throw an exception if RemoveProperty method fails.</para>
+            </summary>
+            <param name="tagId">A TagId identifier of a tag whose property is to be removed. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a property to remove.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.GetProperty(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties)">
+            <summary>
+                <para>Gets the current value of the standard property of a tag.
+A wrapper for GBDataAccessBase::GBGetProperty method.</para>
+                <para>If the property is associated with another tag, then no reading of this tag value will be done.</para>
+                <para>GetProperty calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBGetProperty to throw an exception if GetProperty method fails.</para>
+            </summary>
+            <returns>The current value of the specified tag property.</returns>
+            <param name="tagId">A TagId identifier of a tag whose property is to be read. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a standard property to read.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.GetProperty(System.Int32,System.Int32)">
+            <summary>
+                <para>Gets the current value of a tag property.
+A wrapper for GBDataAccessBase::GBGetProperty method.</para>
+                <para>If the property is associated with another tag, then no reading of this tag value will be done.</para>
+                <para>GetProperty calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBGetProperty to throw an exception if GetProperty method fails.</para>
+            </summary>
+            <returns>The current value of the specified tag property.</returns>
+            <param name="tagId">A TagId identifier of a tag whose property is to be read. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a property to read.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetProperty(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties,System.Object)">
+            <summary>
+                <para>Sets the new value of a tag property.
+A wrapper for GBDataAccessBase::GBSetProperty method.</para>
+                <para>If property is associated with another tag, then value of this tag will not be changed.</para>
+                <para>SetProperty calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBSetProperty to throw an exception if SetProperty method fails.</para>
+            </summary>
+            <param name="tagId">A TagId identifier of a tag whose property is being set. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a property to set.</param>
+            <param name="value">A new value of a property.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetProperty(System.Int32,System.Int32,System.Object)">
+            <summary>
+                <para>Sets the new value of a tag property.
+A wrapper for GBDataAccessBase::GBSetProperty method.</para>
+                <para>If property is associated with another tag, then value of this tag will not be changed.</para>
+                <para>SetProperty calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBSetProperty to throw an exception if SetProperty method fails.</para>
+            </summary>
+            <param name="tagId">A TagId identifier of a tag whose property is being set. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a property to set.</param>
+            <param name="value">A new value of a property.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.AddProperty(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties,System.Object,System.String)">
+            <param name="tagId">A TagId identifier of a tag for which to add the property. This is a TagId returned by CreateTag.</param>
+            <param name="propId">A PropID identifier of a property to add. See OPC DA Specification for details.</param>
+            <param name="defaultValue">An initial property value. Its type specifies the data type of a property.</param>
+            <param name="itemId">A fully qualified ItemID that can be used to access this property. If null is passed, then the property can not be accessed via an ItemID. If you are passing non-null ItemID, then it must be the ItemID of an already created tag.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.AddProperty(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties,System.Object)">
+            <param name="tagId">The TagId identifier of a tag for which to add the property. This is a TagId returned by CreateTag.</param>
+            <param name="propId">The PropID identifier of a property to add. See OPC DA Specification for details.</param>
+            <param name="defaultValue">An initial property value. Its type specifies the data type of a property.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.AddProperty(System.Int32,System.Int32,System.Object)">
+            <param name="tagId">The TagId identifier of a tag for which to add the property. This is a TagId returned by CreateTag.</param>
+            <param name="propId">The PropID identifier of a property to add. See OPC DA Specification for details.</param>
+            <param name="defaultValue">An initial property value. Its type specifies the data type of a property.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.AddProperty(System.Int32,System.Int32,System.Object,System.String)">
+            <param name="tagId">The TagId identifier of a tag for which to add the property. This is a TagId returned by CreateTag.</param>
+            <param name="propId">The PropID identifier of a property to add. See OPC DA Specification for details.</param>
+            <param name="defaultValue">An initial property value. Its type specifies the data type of a property.</param>
+            <param name="description">A textual description of a property. If a description with the same PropID was added to some tag earlier, Toolkit will already have its description and you may pass null. Definitions of standard properties (properties listed in the OPC DA Spec) are always known to the Toolkit.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.AddProperty(System.Int32,System.Int32,System.Object,System.String,System.String)">
+            <summary>
+                <para>Creates a new OPC property. 
+A wrapper for GBDataAccessBase::GBAddProperty method.</para>
+                <para>Properties with PropID form 1 to 8 are created automatically during tag creation.
+Property 8 is created only for tags with Engineering Units defined.</para>
+                <para>AddProperty calls ThrowExceptionForHR with the resulting HRESULT returned by
+the underlying GBDataAccessBase method to throw an exception if AddProperty method fails.</para>
+            </summary>
+            <param name="tagId">The TagId identifier of a tag for which to add the property. This is a TagId returned by CreateTag.</param>
+            <param name="propId">The PropID identifier of a property to add. See OPC DA Specification for details.</param>
+            <param name="defaultValue">An initial property value. Its type specifies the data type of a property.</param>
+            <param name="description">A textual description of a property. If a description with the same PropID was added to some tag earlier, Toolkit will already have its description and you may pass null. Definitions of standard properties (properties listed in the OPC DA Spec) are always known to the Toolkit.</param>
+            <param name="itemId">A fully qualified ItemID that can be used to access this property. If null is passed, then the property can not be accessed via an ItemID. If you are passing non-null ItemID, then it must be the ItemID of an already created tag.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,System.String[],System.Object)">
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="stateNames">An array of strings which describe every possible enumerable tag value.
+  First string in stateNames corresponds to a zero value, second corresponds to 1 and so on.</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions,System.String[],System.Object)">
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="tagOptions">Flags. A combination of bits used to modify the way the Toolkit will proccess this tag.</param>
+            <param name="stateNames">An array of strings which describe every possible enumerable tag value.
+  First string in stateNames corresponds to a zero value, second corresponds to 1 and so on.</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,System.Double,System.Double,System.Object)">
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="loLimit">Specifies the LO EU Range.</param>
+            <param name="hiLimit">Specifies the HI EU Range.</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions,System.Double,System.Double,System.Object)">
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="tagOptions">Flags. A combination of bits used to modify the way the Toolkit will proccess this tag.</param>
+            <param name="loLimit">Specifies the LO EU Range.</param>
+            <param name="hiLimit">Specifies the HI EU Range.</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions,System.Object)">
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="tagOptions">Flags. A combination of bits used to modify the way the Toolkit will proccess this tag.</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,System.Object)">
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.CreateTag(System.Int32,System.String,Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights,Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions,Graybox.OPC.ServerToolkit.CLRWrapper.EUType,System.Object,System.Object)">
+            <summary>
+                <para>Creates a new OPC server tag.
+A wrapper for GBDataAccessBase::GBCreateItem, GBDataAccessBase::GBCreateItemAnalog or
+GBDataAccessBase::GBCreateItemEnum method depending on which overload is called.</para>
+                <para>UpdateTags calls ThrowExceptionForHR with the resulting HRESULT returned by
+the underlying GBDataAccessBase method to throw an exception if CreateTag method fails.</para>
+            </summary>
+            <returns>The TagId identifier of the created tag.</returns>
+            <param name="userId">Arbitrary UserId tag identifier. This value will be passed to the Toolkit event handlers. Its meaning is left for your consideration.</param>
+            <param name="opcItemId">A fully qualified tag name.</param>
+            <param name="accessRights">Indicates if this tag is read only, write only or read/write.</param>
+            <param name="tagOptions">Flags. A combination of bits used to modify the way the Toolkit will proccess this tag.</param>
+            <param name="euType">Indicates the type of Engineering Units (EU) information (if any) contained in euInfo.</param>
+            <param name="euInfo">EU information. Its value depends on euType.
+  If euType is EUType.noEnum then euInfo must be null.
+  If euType is EUType.analog then euInfo must contain an array of two doubles indicating LOW and HI EU range.
+  If euType is EUType.enumerated then euInfo must contain an array of strings which describe every possible tag value
+  (first string in euType corresponds to a zero value, second corresponds to 1 and so on).</param>
+            <param name="defaultValue">An Object containing the tags initial data value in its canonical data type.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.EndUpdate(System.Boolean)">
+            <summary>
+                <para>Ends the transaction of OPC server secondary cache update, which was started
+earlier with BeginUpdate.
+A wrapper for GBDataAccessBase::GBEndUpdate method.</para>
+                <para>UpdateTags calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBEndUpdate to throw an exception if EndUpdate method fails.</para>
+            </summary>
+            <param name="wait">If true then EndUpdate waits for the update transaction to complete (new data is stored into the OPC server cache),
+  otherwise the update transaction is carried out asynchronously.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime)">
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="timestamp">A new timestamp of a tag. It must be a UTC time.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.Quality)">
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="quality">A new quality of a tag.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime)">
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="quality">A new quality of a tag.</param>
+            <param name="timestamp">A new timestamp of a tag. It must be a time in UTC.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime,Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes)">
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="quality">A new quality of a tag.</param>
+            <param name="timestamp">A new timestamp of a tag. It must be a time in UTC.</param>
+            <param name="error">A new error of a tag.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,System.Object)">
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="value">A new value of a tag. Pass null to leave the value of a tag unchanged.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,System.Object,Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime)">
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="value">A new value of a tag. Pass null to leave the value of a tag unchanged.</param>
+            <param name="quality">A new quality of a tag.</param>
+            <param name="timestamp">A new timestamp of a tag. It must be a time in UTC.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.SetTag(System.Int32,System.Object,Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime,Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes)">
+            <summary>
+                <para>Sets a new value, quality, timestamp and error of a single tag.
+A wrapper for GBDataAccessBase::GBSetItem method.</para>
+                <para>This method can be used only between BeginUpdate and EndUpdate methods.
+There may be arbitrary number of SetTag calls inside one BeginUpdate / EndUpdate pair.</para>
+                <para>SetTag calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBSetItem to throw an exception if SetTag method fails.</para>
+            </summary>
+            <param name="tagId">TagID identifier of a tag, returned earlier by CreateTag.</param>
+            <param name="value">A new value of a tag. Pass null to leave the value of a tag unchanged.</param>
+            <param name="quality">A new quality of a tag.</param>
+            <param name="timestamp">A new timestamp of a tag. It must be a time in UTC.</param>
+            <param name="error">A new error of a tag.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.BeginUpdate">
+            <summary>
+                <para>Starts the transaction of OPC server secondary cache update.
+A wrapper for GBDataAccessBase::BeginUpdate method.</para>
+                <para>This method must be called prior to calling SetTag.
+Each call to BeginUpdate must have a single call to EndUpdate.</para>
+                <para>BeginUpdate calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::BeginUpdate to throw an exception if BeginUpdate method fails.</para>
+            </summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.UpdateTags(System.Int32[],System.Object[],System.Boolean)">
+            <param name="tagIds">An array of tag identifiers returned earlier by CreateTag method.</param>
+            <param name="values">An array containing the new values of tags, specified by tagIds.
+   Pass nullptr if you want to leave the values of tags unchanged.</param>
+            <param name="wait">If true then UpdateTags waits for new data to be placed into the OPC server cache,
+  otherwise the update is carried out asynchronously.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.UpdateTags(System.Int32[],Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime,Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes,System.Boolean)">
+            <param name="tagIds">An array of tag identifiers returned earlier by CreateTag method.</param>
+            <param name="quality">A new quality for all tags, specified by tagIds.</param>
+            <param name="timestamp">A new timestamp for all tags, specified by tagIds. It must be a time in UTC.</param>
+            <param name="error">A new status error of tags, specified by tagIds.</param>
+            <param name="wait">If true then UpdateTags waits for new data to be placed into the OPC server cache,
+  otherwise the update is carried out asynchronously.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.UpdateTags(System.Int32[],System.Object[],Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime,Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes,System.Boolean)">
+            <param name="tagIds">An array of tag identifiers returned earlier by CreateTag method.</param>
+            <param name="values">An array containing the new values of tags, specified by tagIds.
+   Pass nullptr if you want to leave the values of tags unchanged.</param>
+            <param name="quality">A new quality for all tags, specified by tagIds.</param>
+            <param name="timestamp">A new timestamp for all tags, specified by tagIds. It must be a time in UTC.</param>
+            <param name="error">A new status error of tags, specified by tagIds.</param>
+            <param name="wait">If true then UpdateTags waits for new data to be placed into the OPC server cache,
+  otherwise the update is carried out asynchronously.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.UpdateTags(System.Int32[],System.Object[],Graybox.OPC.ServerToolkit.CLRWrapper.Quality[],Graybox.OPC.ServerToolkit.CLRWrapper.FileTime[],Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes[],System.Boolean)">
+            <summary>
+                <para>Stores new values, qualities, timestamps and errors of tags into the OPC server cache.
+A wrapper for GBDataAccessBase::GBUpdateItems method.</para>
+                <para>UpdateTags calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBUpdateItems to throw an exception if UpdateTags method fails.</para>
+            </summary>
+            <param name="tagIds">An array of tag identifiers returned earlier by CreateTag method.</param>
+            <param name="values">An array containing the new values of tags, specified by tagIds.
+   Pass null if you want to leave the values of tags unchanged.</param>
+            <param name="qualites">An array containing the new qualites of tags, specified by tagIds.</param>
+            <param name="timestamps">An array containing the new timestamps of tags, specified by tagIds. It must be a time in UTC.</param>
+            <param name="errors">An array containing the new errors of tags, specified by tagIds.</param>
+            <param name="wait">If true then UpdateTags waits for new data to be placed into the OPC server cache,
+  otherwise the update is carried out asynchronously.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.GetTags(System.Int32[],System.Object[]@,Graybox.OPC.ServerToolkit.CLRWrapper.Quality[]@,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime[]@,Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes[]@)">
+            <param name="tagIds">An array of tag identifiers returned earlier by CreateTag method.</param>
+            <param name="values">A variable which recieves an array of tags values.</param>
+            <param name="qualities">A variable which recieves an array of tags qualities.</param>
+            <param name="timestamps">A variable which recieves an array of tags timestamps.</param>
+            <param name="errors">A variable which recieves an array of tags errors.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.GetTags(System.Int32[],System.Object[]@)">
+            <summary>
+                <para>Reads tag values from OPC server cache.
+A wrapper for GBDataAccessBase::GBGetItems method.</para>
+                <para>GetTags calls ThrowExceptionForHR with the resulting HRESULT returned by
+GBDataAccessBase::GBGetItems to throw an exception if GetTags method fails.</para>
+            </summary>
+            <param name="tagIds">An array of tag identifiers returned earlier by CreateTag method.</param>
+            <param name="values">A variable which recieves an array of tags values.</param>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.#ctor">
+            <summary>
+Initializes a new instance of the OPCDAServer class.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer.Events">
+            <summary>
+Gets the object that holds the event handlers of OPCDAServer object.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServer">
+            <summary>
+A CLR wrapper for GBDataAccess native class.
+</summary>
+        </member>
+        <member name="T:GBDataAccessInprocNative">
+            <summary>
+GBDataAccessInproc descendant. Native toolkit in-proc OPC server class.
+</summary>
+        </member>
+        <member name="T:GBDataAccessNative">
+            <summary>
+GBDataAccess descendant. Native toolkit out-of-proc OPC server class.
+</summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.ReadProperties">
+            <summary>
+                <para> Occures when the client reads the values of the tag's properties.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnGetProperties callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.QueryItem">
+            <summary>
+                <para>Invoked when one of the following occures: 
+1) The client tries to validate a tag that is not yet created.
+2) The client tries to add a tag to a group, and this tag is not yet created.
+3) The client tries to read or write a tag that is not yet created.
+4) The client tries to read properties of a tag that is not yet created.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnQueryItem callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.BrowseAccessPaths">
+            <summary>
+                <para>Occures when the OPC client requests a list of the tag's access paths.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnBrowseAccessPath callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.QueryLocales">
+            <summary>
+                <para>Occures when the client requests a list of locales supported by the server.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnQueryLocales callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.GetErrorString">
+            <summary>
+                <para>Occures when the OPC client queries for the error description.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnGetErrorString callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.DeactivateItems">
+            <summary>
+                <para>Occures when some tags becomes inactive.
+It happens when no more OPC clients are waiting for these tags to be updated
+and their values to be sent to the clients.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnDeactivate callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.ActivateItems">
+            <summary>
+                <para>Occures when some tags becomes active.
+It happens when the OPC client requests these tags to be periodically updated from
+the underlying devices and
+their values to be sent to the clients via IOPCDataCallback.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnActivate callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.DataUpdate">
+            <summary>
+                <para>Occures when the OPC server has sent a data update to the client.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBDataUpdate callback.</para>
+                <para>To enable this event, set <c>ServerOptions.NotifyDataUpdates</c> flag then you call
+<c>OPCDAServer.Initialize</c>.</para>
+                <para>WARNING. Handling this event may cause a significant decrease in performance
+because of a massive data marshaling from native to managed code.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.ReadItems">
+            <summary>
+                <para>Occures when the OPC client requests tag reading from the DEVICE.
+Its handler must poll the underlying devices and place the new tags values into the OPC server cache.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnReadItems callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.WriteItems">
+            <summary>
+                <para>Invoked when the OPC client writes new data to the OPC server's tags.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnWriteItems callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.ServerReleased">
+            <summary>
+                <para>Occures when the last instance of an OPC server is destroyed.
+It the ServerReleased event handler you can decide whether to allow
+the OPC clients to connect to the server later or to suspend the
+OPC server class object.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnServerReleased callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.Unlock">
+            <summary>
+                <para>Invoked when the class factory lock counter is decremented.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnUnLock callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.Lock">
+            <summary>
+                <para>Invoked when the class factory lock counter is incremented.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnLock callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.DestroyInstance">
+            <summary>
+                <para>Occures when the instance of an OPC server is destroyed.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnDestroyInstance callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.CreateInstance">
+            <summary>
+                <para>Occures when the new instance of an OPC server is created.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnCreateInstance callback.</para>
+            </summary>
+        </member>
+        <member name="E:Graybox.OPC.ServerToolkit.CLRWrapper.OPCDAServerEvents.BeforeCreateInstance">
+            <summary>
+                <para>This event is invoked by the class factory immediately before the creation of a new OPC server instance.
+In its handler you may decide whether to allow the OPC client to connect to the OPC server.</para>
+                <para>This event is a wrapper for the native GBDataAccessBase::GBOnBeforeCreateInstance callback.</para>
+            </summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.EventHandlingError">
+            <summary>
+Gets or sets the event handing error. A value of ErrorCodes.Ok means success.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Errors">
+            <summary>
+Gets an array object there the individual reading return codes for each property should be stored.
+Before the handler is invoked, Errors is filled with ErrorCodes.InvalidPropertyId values.
+If your handler processes a property with the PropID of Properties[i], then it must store
+it's value to Values[i] and store the reading error to Error[i].
+All properties that were not processed by the handler (the corresponding Error[i] is still
+ErrorCodes.InvalidPropertyId) will be processed by the Toolkit.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Values">
+            <summary>
+Gets an array object there the propties values sohuld be stored.
+The values must me storted in their canonical data types.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Count">
+            <summary>
+Gets the length of the Properties array.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Item">
+            <summary>
+Gets the ItemId structure that identifies the tag for which the properties values are requested.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Properties">
+            <summary>
+Gets the array containing the PropID identifiers of the properties those values are requested.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Locale">
+            <summary>
+Gets the locale identifier that can be used to determine the language of the property value (if it is a textual value).
+This value may be a default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale).
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.Culture">
+            <summary>
+Gets the CultureInfo object that can be used to determine the language of the property value (if it is a textual value).
+Culture corresponds to a value of the Locale property. If the Locale
+represents the default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale), then Culture gets the CultureInfo object,
+constructed from the LCID returned by ConvertDefaultLocale method called
+with that default locale as an argument.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.ItemId,System.Int32[],Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes[],System.Int32,System.Int32)">
+            <summary>
+Initializes a new instance of the ReadPropertiesArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ReadPropertiesArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.ReadProperties event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.EventHandlingError">
+            <summary>
+Gets or sets the event handing error. A value of ErrorCodes.Ok means success.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.AccessPathId">
+            <summary>
+Gets or sets the AccessPathId of a tag.
+You may set this property to an arbitrary identifier,
+that will be passed later to the other event handlers as an ItemIds[i].AccessPathId value.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.TagId">
+            <summary>
+Gets or sets the TagId of a tag.
+The event handler must set this property to a TagId identifier of a tag that
+was created by the event handler as result of the client's request.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.DataType">
+            <summary>
+Gets the VARTYPE representing the data type that is requested by the client.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.CreateTag">
+            <summary>
+Gets a value that is true if the event handler must create a tag, which name
+is specified in the ItemId.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.AccessPath">
+            <summary>
+Gets the access path of the queried OPC item.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.TagName">
+            <summary>
+Gets a fully qualified name of a tag that is bieng queried by the client.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs.#ctor(System.String,System.String,System.Int16,System.Boolean,System.Int32)">
+            <summary>
+Initializes a new instance of the QueryItemArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.QueryItemArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.QueryItem event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BrowseAccessPathsArgs.EventHandlingError">
+            <summary>
+Gets or sets the event handing error. A value of ErrorCodes.Ok means success.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BrowseAccessPathsArgs.AccessPaths">
+            <summary>
+Gets or sets an array of access paths.
+The event handler must set this property or set the EventHandlingError to a failure code.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BrowseAccessPathsArgs.TagName">
+            <summary>
+Gets the fully qualified name of a tag for which the access paths are requested by the OPC client.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BrowseAccessPathsArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.BrowseAccessPathsArgs.#ctor(System.String,System.Int32)">
+            <summary>
+Initializes a new instance of the BrowseAccessPathsArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.BrowseAccessPathsArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.BrowseAccessPaths event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryLocalesArgs.EventHandlingError">
+            <summary>
+Gets or sets the event handing error. A value of ErrorCodes.Ok means success.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.QueryLocalesArgs.Cultures">
+            <summary>
+Gets or sets the CulturesList object that holds the list of the cultures,
+supported by the OPC server.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.QueryLocalesArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList)">
+            <summary>
+Initializes a new instance of the GetErrorStringArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.QueryLocalesArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.QueryLocales event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.EventHandlingError">
+            <summary>
+Gets or sets the event handing error. A value of ErrorCodes.Ok means success.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.Locale">
+            <summary>
+Gets the locale identifier that can be used to determine the language of the error textual description.
+This value may be a default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale).
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.Culture">
+            <summary>
+Gets the CultureInfo object that can be used to determine the language of the error textual description.
+Culture corresponds to a value of the Locale property. If the Locale
+represents the default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale), then Culture gets the CultureInfo object,
+constructed from the LCID returned by ConvertDefaultLocale method called
+with that default locale as an argument.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.RequestedErrorString">
+            <summary>
+Gets or sets the textual description of the requested error code in the RequestedErrorCode property.
+The event handler must set this property to a string object with the error code description.
+If the event handler can't provide the error description, then it should set the EventHandlingError to a failure code.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.RequestedErrorCode">
+            <summary>
+Gets the error code for which the textual description is requested by the OPC client.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+Initializes a new instance of the GetErrorStringArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.GetErrorStringArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.GetErrorString event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DeactivateItemsArgs.Count">
+            <summary>
+Get the count of items in the <c>ItemIds</c> array.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DeactivateItemsArgs.ItemIds">
+            <summary>
+Gets the readonly array of an OPC item identifiers. Your implementation must ignore all ItemIds[i] for which ItemIds[i].TagId is zero.
+The rest values in ItemIds describes the tags that became inactive. 
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.DeactivateItemsArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.ItemId[])">
+            <summary>
+Initializes a new instance of the DeactivateItemsArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.DeactivateItemsArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.DeactivateItems event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ActivateItemsArgs.Count">
+            <summary>
+Get the count of items in the <c>ItemIds</c> array.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ActivateItemsArgs.ItemIds">
+            <summary>
+Gets the readonly array of an OPC item identifiers. Your implementation must ignore all ItemIds[i] for which ItemIds[i].TagId is zero.
+The rest values in ItemIds describes the tags that became active. 
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.ActivateItemsArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.ItemId[])">
+            <summary>
+Initializes a new instance of the ActivateItemsArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ActivateItemsArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.ActivateItems event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.ClientResult">
+            <summary>
+Gets the error code returned by the OPC client after the processing of the data callback.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.Count">
+            <summary>
+Gets the length of the ItemIds array. 
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.Errors">
+            <summary>
+Gets the readonly array of ErrorCodes indicating the success of the individual tag reading.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.Timestamps">
+            <summary>
+Gets the readonly array containing the timestamps of tags, identified by ItemIds.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.Qualities">
+            <summary>
+Gets the readonly array containing the qualities of tags, identified by ItemIds.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.Values">
+            <summary>
+Gets the readonly array containing the new data values of a tags, identified by ItemIds.
+Values[i] can be null. It means that client don't want to write a data value of a tag,
+identified by the ItemIds[i].
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.ItemIds">
+            <summary>
+Gets the readonly array of OPC item identifiers. Your implementation must ignore all ItemIds[i] for which ItemIds[i].TagId is zero.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.ItemId[],System.Object[],Graybox.OPC.ServerToolkit.CLRWrapper.Quality[],Graybox.OPC.ServerToolkit.CLRWrapper.FileTime[],Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes[],System.Int32,System.Int32)">
+            <summary>
+Initializes a new instance of the DataUpdateArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.DataUpdateArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.DataUpdate event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.ValuesAcceptable">
+            <summary>
+Gets the value that is true if the event handler may store somthing into
+Values, Qualities, Timestamps and Errors properties.
+Event may be invoked as result of the OPC client request to refresh tags
+of some OPC group form the DEVICE. Such request can be a call to IOPCAsyncIO2::Refresh2 or IOPCAsyncIO3::RefreshMaxAge. 
+It such case ValuesAcceptable will return false.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.ValuesReturned">
+            <summary>
+The event handler must set this property to true if it placed something in
+Values, Qualities, Timestamps and Errors properties.
+Do not set ValuesReturned to true if ValuesAcceptable is false.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.ValuesReturnedPartial">
+            <summary>
+The event handler may set this property to true if it is needed to return the calling
+OPC client values, qualities and timestamps from Values, Qualities and Timestamps arrays
+for only a part of tags, identified by ItemIds, and pass values, qualities and timestamps
+from the server's cache for the rest of the tags.
+If ValuesReturnedPartial set to true, then the ItemIds[i].TagId must be forced to zero for
+each tag for which the event handler stored it's value, quality and timestamp into
+Value[i], Quality[i] and Timestamp[i].
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Locale">
+            <summary>
+Gets the locale identifier that should be used to process the Values.
+This value may be a default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale).
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Culture">
+            <summary>
+Gets the CultureInfo object that should be used to process the Values.
+Culture corresponds to a value of the Locale property. If the Locale
+represents the default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale), then Culture gets the CultureInfo object,
+constructed from the LCID returned by ConvertDefaultLocale method called
+with that default locale as an argument.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.MasterQuality">
+            <summary>
+Gets or sets the master quality of a reading operation.
+MasterQuality must be set to ErrorCodes.False if some of the Qualities were set to
+a value representing a bad or an uncertain quality.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.MasterError">
+            <summary>
+Gets or sets the master error of a reading operation.
+MasterError must be set to ErrorCodes.False if some of the Errors were set to
+a value other than ErrorCodes.Ok.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Errors">
+            <summary>
+Gets or sets an array of errors of the tags, identified by ItemIds.
+If the ValuesAcceptable property is false, then Errors property is
+not accessible and must not be used.
+Errors is initialized to null then the event handler is called.
+Errors indicates the success of the individual tag reads. If some of Errors[i] is
+set to a value other than ErrorCodes.Ok, then you must set the MasterError to ErrorCodes.False.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Timestamps">
+            <summary>
+Gets or sets an array of UTC timestamps of the tags, identified by ItemIds.
+If the ValuesAcceptable property is false, then Timestamps property is
+not accessible and must not be used.
+Timestamps is initialized to null then the event handler is called.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Qualities">
+            <summary>
+Gets or sets an array of qualities of the tags, identified by ItemIds.
+If the ValuesAcceptable property is false, then Qualities property is
+not accessible and must not be used.
+Qualities is initialized to null then the event handler is called.
+If you store a bad or an uncertain quality to Qualities[i], then you
+must set the MasterQuality to ErrorCodes.False.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Values">
+            <summary>
+Gets or sets an array of data values of the tags, identified by ItemIds.
+If the ValuesAcceptable property is false, then Values property is
+not accessible and must not be used.
+Values is initialized to null then the event handler is called.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.ItemIds">
+            <summary>
+Gets the array of an OPC item identifiers. Your implementation must ignore all ItemIds[i] for which ItemIds[i].TagId is zero.
+Some of ItemIds[i].TagId may be forced to zero if the event handler sets the ValuesReturnedPartial property to true
+(see ValuesReturnedPartial description for details).
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.Count">
+            <summary>
+Gets the count of the OPC items being read.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.ItemId[],System.Boolean,System.Int32,System.Int32)">
+            <summary>
+Initializes a new instance of the ReadItemsArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ReadItemsArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.ReadItems event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Locale">
+            <summary>
+Gets the locale identifier that should be used to process the Values.
+This value may be a default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale).
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Culture">
+            <summary>
+Gets the CultureInfo object that should be used to process the Values.
+Culture corresponds to a value of the Locale property. If the Locale
+represents the default locale (LOCALE_SYSTEM_DEFAULT, LOCALE_USER_DEFAULT,
+or a sublanguage-neutral locale), then Culture gets the CultureInfo object,
+constructed from the LCID returned by ConvertDefaultLocale method called
+with that default locale as an argument.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.MasterError">
+            <summary>
+Gets or sets the master error of a writing operation.
+MasterError must be set to ErrorCodes.False if some of the Errors were set to
+a value other than ErrorCodes.Ok.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Count">
+            <summary>
+Gets the length of the ItemIds array. 
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.TimestampsSpecified">
+            <summary>
+Get a variable that is true when the Timestamps array is specified.
+If TimestampsSpecified is false then the Timestamps property is null
+and your event handler must not use it.
+TimestampsSpecified can be false if the OPC client called a method
+of OPC DA2 interface, where writing the tag timestamp is not supported.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.QualitiesSpecified">
+            <summary>
+Get a variable that is true when the Qualities array is specified.
+If QualitiesSpecified is false then the Qualities property is null
+and your event handler must not use it.
+QualitiesSpecified can be false if the OPC client called a method
+of OPC DA2 interface, where writing the tag quality is not supported.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.CopyToCache">
+            <summary>
+Gets or sets a variable indicating whether the Toolkit must copy data from
+Values, Qualities, Timestamps and Errors to the OPC server cache.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Errors">
+            <summary>
+Gets the array of ErrorCodes indicating the success of the individual tag writes.
+Errors array is initialized with ErrorCodes.Ok values. If the error has occured while
+writing a tag, identified by ItemIds[i], then you sohuld store a code of this error
+to Errors[i] and set MasterError to ErrorCodes.False.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Timestamps">
+            <summary>
+Gets the readonly array containing the new timestamps of a tags, identified by ItemIds.
+Timestamps will be null if the client is using OPC DA2 interface. It this case
+TimestampsSpecified property is false.
+Timestamps[i] can be FileTime.Unspecified. It means that client don't want to write a timestamp of a tag,
+identified by the ItemIds[i].
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Qualities">
+            <summary>
+Gets the readonly array containing the new qualities of a tags, identified by ItemIds.
+Qualities will be null if the client is using OPC DA2 interface. It this case
+QualitiesSpecified property is false.
+Qualities[i] can be Quality.Unspecified. It means that client don't want to write a quality of a tag,
+identified by the ItemIds[i].
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.Values">
+            <summary>
+Gets the readonly array containing the new data values of a tags, identified by ItemIds.
+Values[i] can be null. It means that client don't want to write a data value of a tag,
+identified by the ItemIds[i].
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.ItemIds">
+            <summary>
+Gets the array of an OPC item identifiers. Your implementation must ignore all ItemIds[i] for which ItemIds[i].TagId is zero.
+You may force ItemIds[i].TagId to zero to prevent the corresponding tag to be written
+(if CopyToCache is set to false, then it will have no effect).
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.ItemId[],System.Object[],Graybox.OPC.ServerToolkit.CLRWrapper.Quality[],Graybox.OPC.ServerToolkit.CLRWrapper.FileTime[],System.Int32,System.Int32)">
+            <summary>
+Initializes a new instance of the WriteItemsArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.WriteItemsArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.WriteItems event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.ServerReleasedArgs.Suspend">
+            <summary>
+Gets or sets a variable inidicating whether to suspend the OPC server class object.
+If set to true then no new OPC server's instances can be created later.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.ServerReleasedArgs.#ctor(System.Boolean)">
+            <summary>
+Initializes a new instance of the ServerReleasedArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ServerReleasedArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.ServerReleased event.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.UnlockArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.Unlock event.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.LockArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.Lock event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.DestroyInstanceArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.DestroyInstanceArgs.#ctor(System.Int32)">
+            <summary>
+Initializes a new instance of the DestroyInstanceArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.DestroyInstanceArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.DestroyInstance event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CreateInstanceArgs.ClientId">
+            <summary>
+Gets the identifier of a calling client (ClientId), which was set earlier in the BeforeCreateInstance event handler.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CreateInstanceArgs.#ctor(System.Int32)">
+            <summary>
+Initializes a new instance of the CreateInstanceArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.CreateInstanceArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.CreateInstance event.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BeforeCreateInstanceArgs.EventHandlingError">
+            <summary>
+Gets or sets the event handing error. A value of ErrorCodes.Ok means success.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BeforeCreateInstanceArgs.ClientId">
+            <summary>
+Gets or sets an arbitrary identifier of the calling client.
+The same ClientId will be passed later to a number of other events handlers.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.BeforeCreateInstanceArgs.Aggregating">
+            <summary>
+Gets a vaiable indicating whether the new OPC server instance is about
+to be created as part of an aggregate.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.BeforeCreateInstanceArgs.#ctor(System.Boolean,System.Int32)">
+            <summary>
+Initializes a new instance of the BeforeCreateInstanceArgs class.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.BeforeCreateInstanceArgs">
+            <summary>
+Provides data for the Graybox.OPC.OPCDAServerEvents.BeforeCreateInstance event.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.GBDataAccessEventIdx">
+            <summary>
+Event flags indexes and count declaration. Used internally.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.RemoveAt(System.Int32)">
+            <summary>
+Removes the <c>IList</c> item at the specified index.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Remove(System.Object)">
+            <summary>
+Removes the first occurrence of a specific object from the <c>IList</c>.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Insert(System.Int32,System.Object)">
+            <summary>
+Inserts an item to the <c>IList</c> at the specified index.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.IndexOf(System.Object)">
+            <summary>
+Determines the index of a specific item in the <c>IList</c>.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Add(System.Object)">
+            <summary>
+Adds an item to the <c>IList</c>.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Clear">
+            <summary>
+Removes all items from the <c>IList</c>.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Contains(System.Object)">
+            <summary>
+Determines whether the <c>IList</c> contains a specific value.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.CopyTo(System.Array,System.Int32)">
+            <summary>
+Copies the elements of the <c>ICollection</c> to an <c>Array</c>, starting at a particular <c>Array</c> index.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.GetEnumerator">
+            <summary>
+Returns an enumerator that iterates through a collection.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.IsFixedSize">
+            <summary>
+Gets a value indicating whether the <c>IList</c> has a fixed size.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.IsReadOnly">
+            <summary>
+Gets a value indicating whether the <c>IList</c> is read-only.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.SyncRoot">
+            <summary>
+Gets an object that can be used to synchronize access to the <c>ICollection</c>. 
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.IsSynchronized">
+            <summary>
+Gets a value indicating whether access to the <c>ICollection</c> is synchronized (thread safe).
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Count">
+            <summary>
+Gets the number of elements contained in the <c>ICollection</c>.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Item(System.Int32)">
+            <summary>
+Gets or sets the element at the specified index.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Unmanaged">
+            <summary>
+Gets the pointer of the unmanaged array that holds the LCIDs of
+the locales supported by the OPC server.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.Dispose">
+            <summary>
+Frees the unmanaged resources.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.#ctor(System.Globalization.CultureInfo[])">
+            <summary>
+Initializes a new instance of the <c>CulturesList</c> class using the given array of
+the <c>CultureInfo</c> objects.
+</summary>
+            <param name="arr" />
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.#ctor">
+            <summary>
+Initializes a new instance of the <c>CulturesList</c> class.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList.UpdateUnmanaged">
+            <summary>
+Updates the unmanaged array of the LCIDs with the data from the m_cultures.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.CulturesList">
+            <summary>
+Represents a collection of the CultureInfo objects.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.Helper.GuidToHGlobal(System.Guid)">
+            <summary>
+Converts a Guid object to a native GUID structure.
+</summary>
+            <param name="guid">A Guid object to convert.</param>
+            <returns>A pointer to memory allocated in the local unmanaged heap to hold the resulting GUID structure.</returns>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.Helper">
+            <summary>
+Contains a helper functions.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties">
+            <summary>
+Contains the IDs of the standard OPC properties.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.WriteBehavior">
+            <summary>
+Write Behavior
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemValue">
+            <summary>
+Item Value
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.UnfilteredItemID">
+            <summary>
+Unfiltered Item ID
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.UnconvertedItemID">
+            <summary>
+Unconverted Item ID
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.TypeSystemID">
+            <summary>
+Type System ID
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.TypeID">
+            <summary>
+Type ID
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.TypeDescription">
+            <summary>
+Type Description
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemTimezone">
+            <summary>
+Item Timezone
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemTimestamp">
+            <summary>
+Item Timestamp
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.SoundFile">
+            <summary>
+Sound File
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ServerScanRate">
+            <summary>
+Server Scan Rate
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemQuality">
+            <summary>
+Item Quality
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.PrimaryAlarmArea">
+            <summary>
+Primary Alarm Area
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ContactOpenLabel">
+            <summary>
+Contact Open Label
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.LowInstrumentRange">
+            <summary>
+Low Instrument Range
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.LowEU">
+            <summary>
+Low EU
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.LoLoLimit">
+            <summary>
+LoLo Limit
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.LoLimit">
+            <summary>
+Lo Limit
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.LimitExceeded">
+            <summary>
+Limit Exceeded
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.HiHiLimit">
+            <summary>
+HiHi Limit
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.HighInstrumentRange">
+            <summary>
+High Instrument Range
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.HighEU">
+            <summary>
+High EU
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.HiLimit">
+            <summary>
+Hi Limit
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.EUUnits">
+            <summary>
+EU Units
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemEUType">
+            <summary>
+Item EU Type
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemEUInfo">
+            <summary>
+Item EU Info
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.DictionaryID">
+            <summary>
+Dictionary ID
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.Dictionary">
+            <summary>
+Dictionary
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.DeviationLimit">
+            <summary>
+Deviation Limit
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemDescription">
+            <summary>
+Item Description
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.Deadband">
+            <summary>
+Deadband
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemCanonicalDataType">
+            <summary>
+Item Canonical Data Type
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.DataFilterValue">
+            <summary>
+Data Filter Value
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ConsistencyWindow">
+            <summary>
+Consistency Window
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ConditionStatus">
+            <summary>
+Condition Status
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ConditionLogic">
+            <summary>
+Condition Logic
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ContactCloseLabel">
+            <summary>
+Contact Close Label
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.RateOfChangeLimit">
+            <summary>
+Alarm Area List
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.AlarmQuickHelp">
+            <summary>
+Alarm Area List
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.AlarmAreaList">
+            <summary>
+Alarm Area List
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.StandardProperties.ItemAccessRights">
+            <summary>
+Item Access Rights
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes">
+            <summary>
+Contains the error codes (HRESULTs) used by OPC Data Access methods.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidArguments">
+            <summary>
+One or more arguments are invalid.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.OutOfMemory">
+            <summary>
+Ran out of memory.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.AccessDenied">
+            <summary>
+Access denied.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.NotImplemented">
+            <summary>
+The method is not implemented.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.Unexpected">
+            <summary>
+An unexpected error has occured.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.Abort">
+            <summary>
+The operation was aborted.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.Fail">
+            <summary>
+The operation has failed.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.False">
+            <summary>
+The operation has completed but there was several errors.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.Ok">
+            <summary>
+No error.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.LowAuthentication">
+            <summary>
+Server expected higher level of package privacy.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.LowImpersonation">
+            <summary>
+Server requires higher impersonation level to access secured data.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.PrivateActive">
+            <summary>
+A session using private OPC credentials is already active.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.NotSupported">
+            <summary>
+The server does not support writing of quality and/or timestamp.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.RateNotSet">
+            <summary>
+There is no sampling rate set for the specified item.  
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.QueueOverflow">
+            <summary>
+Not every detected change has been returned since the server's buffer reached its limit and had to purge out the oldest data.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidContinuationPoint">
+            <summary>
+The continuation point is not valid.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.BufferingNotSupported">
+            <summary>
+The server does not support buffering of data items that are collected at a faster rate than the group update rate.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.DeadBandNotSupported">
+            <summary>
+The item does not support deadband.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.DeadbandNotSet">
+            <summary>
+The item deadband has not been set for this item.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidPropertyId">
+            <summary>
+The specified property ID is not valid for the item.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.NotFound">
+            <summary>
+The requested object (e.g. a public group) was not found.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidConfig">
+            <summary>
+The server's configuration file is an invalid format.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InUse">
+            <summary>
+The operation cannot be performed because the object is bering referenced.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.Clamped">
+            <summary>
+A value passed to write was accepted but the output was clamped.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.UnsupportedRate">
+            <summary>
+The server does not support the requested data rate but will use the closest available rate.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.DuplicateName">
+            <summary>
+Duplicate name not allowed.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.OutOfRange">
+            <summary>
+The value was out of range.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.UnknownAccessPath">
+            <summary>
+The item's access path is not known to the server.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidFilter">
+            <summary>
+The filter string was not valid.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidItemId">
+            <summary>
+The item ID does not conform to the server's syntax.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.UnknownItemId">
+            <summary>
+The item ID does not conform to the server's syntax.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.BadItemsAccessRights">
+            <summary>
+The item's access rights do not allow the operation.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.GroupIsPublic">
+            <summary>
+The requested operation cannot be done on a public group.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.BadType">
+            <summary>
+ The server cannot convert the data between the specified format and/or requested data type and the canonical data type. 
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ErrorCodes.InvalidHandle">
+            <summary>
+ The value of the handle is invalid.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions">
+            <summary>
+The set of flags used to modify the OPC server behavior.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.NotifyDataUpdates">
+            <summary>
+If set, then DataUpdate event is enabled. If this flag is not set, then
+DataUpdate event won't be invoked even if it is advised. WARNING, using
+DataUpdate event may significantly reduce .NET OPC Server performance
+because of a massive native to managed data marshaling. Use with care.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.AlwaysDevice">
+            <summary>
+If set, then any OPC Client read request, both DEVICE and CACHE,
+will cause ReadItems event to be invoked.
+Otherwise ReadItems event is invoked, then the reading is performed
+with DEVICE datasource only.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.DefaultOverrideQuality">
+            <summary>
+If set, then the default quality for the tags, being written by
+the OPC Clients, is OPC_QUALITY_LOCAL_OVERRIDE. Otherwise it is
+OPC_QUALITY_GOOD.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.GroupCheckLocale">
+            <summary>
+If set, then the LCID check is performed each time the OPC Client
+tries to create an OPC Group or set it's locale. Only LCIDs which
+are supported by the OPC Server are accepted.
+If this bit is not set, then any LCID is accepted for OPC Groups.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.ReturnAnyEUInfo">
+            <summary>
+If set the property 8 (Item EU Info) value will be reported
+for any engineering units type. Otherwise, the property 8 will
+be returned for the enumerated tags only.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.FreeStrings">
+            <summary>
+Used internally.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.NoAccessPaths">
+            <summary>
+Ignore OPC item access paths. If your OPC Server does not use access paths,
+then this bit should be set to one in order to ensure its compliance this
+OPC Data Access specification.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.ChildlessTags">
+            <summary>
+OPC DA3 servers only. If this flag is set, then the toolkit will assume,
+that tags can't have any children. This doesn't mean that there can be no
+tag folders in the address space hierarchy. If set, AssumeChildlessTags flag is ignored.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.AssumeChildlessTags">
+            <summary>
+OPC DA3 servers only. When the OPC Client browses the server address space it will
+be reported that all of the tags (tags, not the folders conotaing tags) possibly has
+children tags. Such behavior is acceptable by the specification. This can improve
+performance if server has a large amount of tags (about 10000 and more).
+If this flag is not set, then OPC Server will find out exactly whether the tag has any children or not.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerOptions.Default">
+            <summary>
+The default value (zero).
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions">
+            <summary>
+The set of flags used to modify the way the Toolkit will process the OPC tag.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions.DontCopyName">
+            <summary>
+Useless in CLR environment. Do not use.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions.CanonicalOnly">
+            <summary>
+If set then OPC clients are allowed to request the tag value in its canonical data type only.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions.DontCompareValues">
+            <summary>
+If set then tag value will be sent to OPC Clients via IOPCDataCallback interface every time
+its timestamp changes, even if its value has not changed.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.TagOptions.Default">
+            <summary>
+The default value (zero).
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.m_code">
+Converts a quality to a string with the format: 'quality[limit]:vendor'.
+</member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.IsUncertain">
+            <summary>
+Returns ture if quality is 'uncertain'.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.IsGood">
+            <summary>
+Returns ture if quality is 'good'.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.IsBad">
+            <summary>
+Returns ture if quality is 'bad'.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.Code">
+            <summary>
+Returns the quality as a 16 bit integer.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.VendorStatus">
+            <summary>
+The value in the vendor bits field.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.QualityStatus">
+            <summary>
+The value in the quality bits field.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.LimitStatus">
+            <summary>
+The value in the limit bits field.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.op_Equality(Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.Quality)">
+            <summary>
+Returns true if the objects are equal.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.op_Inequality(Graybox.OPC.ServerToolkit.CLRWrapper.Quality,Graybox.OPC.ServerToolkit.CLRWrapper.Quality)">
+            <summary>
+Returns true if the objects are not equal.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.#ctor(System.UInt16)">
+            <summary>
+Initializes the object from the contents of a 16 bit integer.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.#ctor(Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits)">
+            <summary>
+Initializes the object with the specified quality.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.Unspecified">
+            <summary>
+An 'unspecified' quality value.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.Good">
+            <summary>
+A 'good' quality value.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.Quality.Bad">
+            <summary>
+A 'bad' quality value.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.Quality">
+            <summary>
+Contains the quality field for an item value.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.QualityMasks">
+            <summary>
+Defines bit masks for the quality.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityMasks.qualityMask">
+            <summary>
+These bits hold the quality status and substatus.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityMasks.limitMask">
+            <summary>
+These bits hold the limit status.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityMasks.vendorMask">
+            <summary>
+These bits are available for vendor specific use.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits">
+            <summary>
+Defines the possible quality status bits.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.goodLocalOverride">
+            <summary>
+The value has been Overridden. Typically this is means the input has been
+disconnected and a manually entered value has been ‘forced’.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.good">
+            <summary>
+The value is good. There are no special conditions.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.uncertainSubNormal">
+            <summary>
+The value is derived from multiple sources and has less than the required number of Good sources.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.uncertainEUExceeded">
+            <summary>
+The returned value is outside the limits defined for this parameter.
+Note that in this case (per the Fieldbus Specification) the ‘Limits’ field indicates
+which limit has been exceeded but does NOT necessarily imply that the value cannot move farther out of range.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.uncertainSensorNotAccurate">
+            <summary>
+Either the value has ‘pegged’ at one of the sensor limits (in which case the limit field
+should be set to 1 or 2) or the sensor is otherwise known to be out of calibration via
+some form of internal diagnostics (in which case the limit field should be 0).
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.uncertainLastUsableValue">
+            <summary>
+Whatever was writing this value has stopped doing so.
+The returned value should be regarded as ‘stale’.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.uncertain">
+            <summary>
+The quality of the value is uncertain. There is no specific reason why the value is uncertain.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badWaitingForInitialData">
+            <summary>
+After Items are added to a group, it may take some time for the server to actually
+obtain values for these items. In such cases the client might perform a read (from cache),
+or establish a ConnectionPoint based subscription and/or execute a Refresh on such
+a subscription before the values are available. OPC DA 3.0 or newer servers.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badOutOfService">
+            <summary>
+The block is off scan or otherwise locked. This quality is also used when the
+active state of the item or the group containing the item is InActive.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badCommFailure">
+            <summary>
+Communications have failed. There is no last known value is available.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badLastKnownValue">
+            <summary>
+Communications have failed. However, the last known value is available.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badSensorFailure">
+            <summary>
+A sensor failure had been detected
+(the ’Limits’ field can provide additional diagnostic information in some situations).
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badDeviceFailure">
+            <summary>
+A device failure has been detected.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badNotConnected">
+            <summary>
+The input is required to be logically connected to something but is not.
+This quality may reflect that no value is available at this time,
+for reasons like the value may have not been provided by the data source.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.badConfigurationError">
+            <summary>
+There is some server specific problem with the configuration.
+For example the item in question has been deleted from the configuration.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.QualityBits.bad">
+            <summary>
+The value is bad but no specific reason is known.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.LimitBits">
+            <summary>
+Defines the possible limit status bits.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.LimitBits.constant">
+            <summary>
+The value is a constant and cannot move.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.LimitBits.high">
+            <summary>
+The value has ‘pegged’ at some high limit.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.LimitBits.low">
+            <summary>
+The value has ‘pegged’ at some lower limit.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.LimitBits.none">
+            <summary>
+The value is free to move up or down.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.EUType">
+            <summary>
+Defines possible OPC item engineering unit types
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.EUType.enumerated">
+            <summary>
+A tag is an enumerated value and its possible states are described with a textual descriptions,
+defined by engineering unit.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.EUType.analog">
+            <summary>
+A tag is analog and has a defined low and high limits, represented by engineering unit.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.EUType.noEnum">
+            <summary>
+No engineering units is defined for a tag.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights">
+            <summary>
+Defines possible OPC item access rights.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights.readWritable">
+            <summary>
+A tag is readable and writeable.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights.writable">
+            <summary>
+A tag is writable.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights.readable">
+            <summary>
+A tag is readable.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.AccessRights.noAccess">
+            <summary>
+OPC clients can't access a tag.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState">
+            <summary>
+The set of possible OPC server states.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.commFault">
+            <summary>
+The server cannot communicate with the underlying hardware.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.test">
+            <summary>
+The server is disconnected from the underlying hardware.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.suspended">
+            <summary>
+The server has halted all communication with the underlying hardware.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.noConfig">
+            <summary>
+The server cannot load its configuration information.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.failed">
+            <summary>
+The server is not functioning due to a fatal error.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.running">
+            <summary>
+The server is running normally.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ServerState.unknown">
+            <summary>
+The server state is unknown.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ItemId.AccessPathId">
+Identifies the Access Path of an OPC tag.
+</member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ItemId.UserId">
+Arbitrary identifier of an OPC tag set by OPC server implementation.
+</member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.ItemId.TagId">
+            <summary>
+Identifier of an OPC tag, which is represented by this OPC item.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.ItemId">
+            <summary>
+A structure used to identify an OPC item.
+A wrapper for tha native GBItemID structure.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.ToInt64">
+            <summary>
+Used to convert the FileTime object to the 64 bit integer.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.ToDateTime">
+            <summary>
+Used to convert the FileTime object to the DateTime type.
+</summary>
+        </member>
+        <member name="P:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.UtcNow">
+            <summary>
+Returns a FileTime representing the current system date and time in UTC.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.Unspecified">
+            <summary>
+Represents a FileTime which value is unspecified.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.op_Equality(Graybox.OPC.ServerToolkit.CLRWrapper.FileTime,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime)">
+            <summary>
+Returns true is two objects are equal.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.op_Inequality(Graybox.OPC.ServerToolkit.CLRWrapper.FileTime,Graybox.OPC.ServerToolkit.CLRWrapper.FileTime)">
+            <summary>
+Returns true is two objects are not equal.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.#ctor(System.DateTime)">
+            <summary>
+Initializes the object from the DateTime object.
+</summary>
+        </member>
+        <member name="M:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.#ctor(System.Int64)">
+            <summary>
+Initializes the object from the 64 bit integer.
+</summary>
+        </member>
+        <member name="F:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime.m_filetime">
+            <summary>
+The underlying FILETIME value.
+</summary>
+        </member>
+        <member name="T:Graybox.OPC.ServerToolkit.CLRWrapper.FileTime">
+            <summary>
+A structure used to represent the date and time of an OPC item value (its timestamp).
+A wrapper for WinAPI FILETIME structure.
+</summary>
+        </member>
+    </members>
+</doc>
